@@ -1,0 +1,18 @@
+﻿using MovieStoreApplication.Data.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MovieStoreApplication.Data.Abstract
+{
+    public interface IDirectorRepository
+    {
+        void Add(Director director);
+        void Update(int id, Director director);
+        List<Director> Search(string name, string surname);
+        void Delete(int id);
+
+    }
+}
