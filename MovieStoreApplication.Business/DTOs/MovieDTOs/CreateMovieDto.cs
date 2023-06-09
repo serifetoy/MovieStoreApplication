@@ -1,36 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieStoreApplication.Data.Entity
+namespace MovieStoreApplication.Business.DTOs.MovieDTOs
 {
-    [Table("Movies")]
-    public class Movie
+    public class CreateMovieDto
     {
-        [Key]
-        public int Id { get; set; }
+        [Required]
         [MaxLength(100)]
         public string Title { get; set; }
+        [Required]
         public int Year { get; set; }
-
-        [ForeignKey("GenreId")]
-        public Genre Genre { get; set; }
+        [Required]
         public int GenreId { get; set; }
-
-        [ForeignKey("DirectorId")]
-        public Director Director { get; set; }
+        [Required]
         public int DirectorId { get; set; }
-
-        [ForeignKey("ActorId")]
-        public Actor Actor { get; set; }// <List> ??
+        [Required]
         public int ActorId { get; set; }
+        [Required]
         public double Price { get; set; }
-
     }
-
-    
 }

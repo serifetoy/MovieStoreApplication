@@ -38,7 +38,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             return _context.Movies.Skip(page * pageSize).Take(pageSize).ToList();
         }
 
-        public void Update(int id, Movie movie)
+        public Movie Update(int id, Movie movie)
         {
             var p = _context.Movies.FirstOrDefault(x => x.Id == id);
 
@@ -52,6 +52,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             p.Price = movie.Price;
 
             _context.SaveChanges();
+            return p;
         }
         public List<Movie> Search(string name, int? directorId, int? actorId, int? price )
         {

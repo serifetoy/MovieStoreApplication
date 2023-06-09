@@ -20,8 +20,5 @@ namespace MovieStoreApplication.Data.Entity
         public List<Movie> FavoriteMovies { get; set; }
         public List<Order> Orders { get;set; }
 
-        [ForeignKey("Orders")]
-        public Order Order { get;set; }
-
     }
 }

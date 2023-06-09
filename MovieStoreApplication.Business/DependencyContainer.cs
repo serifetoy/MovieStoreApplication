@@ -6,17 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MovieStoreApplication.Business.Abstract;
+using MovieStoreApplication.Business.Concrete;
 
 namespace MovieStoreApplication.Business
 {
     public static class DependencyContainer
     {
-        public static IServiceCollection AddDataLayer(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddBusinessLayer(this IServiceCollection services)
         {
-            //services.AddDbContext<MovieContext>(option => option.UseSqlServer(configuration.GetConnectionString("Default")));
+            services.AddScoped<IMovieService, MovieService>();
 
-            //kapattıklarını kullanma fikir olsun sadece
-            //services.AddScoped<IMovieRepository, MovieRepository>();
 
             return services;
         }
