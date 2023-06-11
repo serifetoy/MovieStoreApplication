@@ -16,7 +16,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
         {
             _context = context;
         }
-        public void Add(Order order)
+        public bool Add(Order order)
         {
             order = _context.Orders.SingleOrDefault(x => x.Customer.Id == order.CustomerId && x.Movie.Id == order.MovieId);
 
@@ -25,7 +25,9 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Orders.Add(order);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            return result > 0;
         }
 
         public Order GetById(int id)
@@ -38,13 +40,13 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             return _context.Orders.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Order> GetAll()//look
+        public List<Order> GetAll()//not sure ??
         {
             var orderList = _context.Orders.Include(x => x.Movie).Include(x => x.Customer).OrderBy(x => x.Id).ToList<Order>();
             return orderList;
         }
 
-        public void Update(int id, Order order)
+        public Order Update(int id, Order order)
         {
             var item = _context.Orders.FirstOrDefault(x => x.Id == id);
 
@@ -59,9 +61,10 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
 
             _context.SaveChanges();
+            return item;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var order = _context.Orders.FirstOrDefault(x => x.Id == id);
 
@@ -69,7 +72,9 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Orders.Remove(order);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            return result > 0;
         }
 
 

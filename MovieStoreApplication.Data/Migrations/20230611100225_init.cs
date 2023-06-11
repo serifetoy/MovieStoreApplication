@@ -81,12 +81,6 @@ namespace MovieStoreApplication.Data.Migrations
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Movies_Actors_ActorId",
-                        column: x => x.ActorId,
-                        principalTable: "Actors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Movies_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
@@ -102,6 +96,30 @@ namespace MovieStoreApplication.Data.Migrations
                         name: "FK_Movies_Genres_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genres",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ActorMovie",
+                columns: table => new
+                {
+                    ActorsId = table.Column<int>(type: "int", nullable: false),
+                    PlayedMoviesId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActorMovie", x => new { x.ActorsId, x.PlayedMoviesId });
+                    table.ForeignKey(
+                        name: "FK_ActorMovie_Actors_ActorsId",
+                        column: x => x.ActorsId,
+                        principalTable: "Actors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ActorMovie_Movies_PlayedMoviesId",
+                        column: x => x.PlayedMoviesId,
+                        principalTable: "Movies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -135,9 +153,9 @@ namespace MovieStoreApplication.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_ActorId",
-                table: "Movies",
-                column: "ActorId");
+                name: "IX_ActorMovie_PlayedMoviesId",
+                table: "ActorMovie",
+                column: "PlayedMoviesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movies_CustomerId",
@@ -168,13 +186,16 @@ namespace MovieStoreApplication.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ActorMovie");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Movies");
+                name: "Actors");
 
             migrationBuilder.DropTable(
-                name: "Actors");
+                name: "Movies");
 
             migrationBuilder.DropTable(
                 name: "Customers");

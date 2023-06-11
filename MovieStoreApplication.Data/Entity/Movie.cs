@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 namespace MovieStoreApplication.Data.Entity
 {
     [Table("Movies")]
-    public class Movie
+    public class Movie : BaseEntity<int>
     {
-        [Key]
-        public int Id { get; set; }
+      
         [MaxLength(100)]
         public string Title { get; set; }
         public int Year { get; set; }
@@ -25,8 +24,7 @@ namespace MovieStoreApplication.Data.Entity
         public Director Director { get; set; }
         public int DirectorId { get; set; }
 
-        [ForeignKey("ActorId")]
-        public Actor Actor { get; set; }// <List> ??
+        public List<Actor> Actors { get; set; }
         public int ActorId { get; set; }
         public double Price { get; set; }
 

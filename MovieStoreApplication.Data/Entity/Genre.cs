@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 namespace MovieStoreApplication.Data.Entity
 {
     [Table("Genres")]
-    public class Genre
+    public class Genre : BaseEntity<int>
     {
-        public int Id { get; set; }
         [MaxLength(100)]
         public string Name { get; set; }
-        public List<Movie> Genres { get; set; }
+        public List<Genre> Genres { get; set; }//emin değilim
     }
 }

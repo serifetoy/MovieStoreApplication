@@ -16,7 +16,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             _context = context;
         }
 
-        public void Add(Actor actor)
+        public bool Add(Actor actor)
         {
             actor = _context.Actors.SingleOrDefault(x => x.Name == actor.Name && x.Surname == actor.Surname);
 
@@ -25,9 +25,10 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Actors.Add(actor);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+            return result > 0;
         }
-        public void Update(int id, Actor actor)
+        public Actor Update(int id, Actor actor)
         {
             var p = _context.Actors.FirstOrDefault(x => x.Id == id);
 
@@ -38,10 +39,10 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             p.Surname = actor.Surname;   
 
             _context.SaveChanges();
+            return p;
         }
         public List<Actor> Search(string name, string surname )
         {
-            //List<Movie>? playedMovies, parameter
             var query = _context.Actors.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(name))
@@ -50,14 +51,11 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             if (!string.IsNullOrWhiteSpace(surname))
                 query.Where(x => x.Surname.Contains(surname));
 
-            //if (playedMovies.)
-            //    query.Where(x => x.PlayedMovies == playedMovies);
-
 
             return query.ToList();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var p = _context.Actors.FirstOrDefault(x => x.Id == id);
 
@@ -65,10 +63,14 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Actors.Remove(p);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            return result > 0;
         }
 
-
-
+        public Actor GetById(int id)
+        {
+            return _context.Actors.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

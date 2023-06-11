@@ -9,10 +9,10 @@ namespace MovieStoreApplication.Data.Abstract
 {
     public interface IDirectorRepository
     {
-        void Add(Director director);
-        void Update(int id, Director director);
+        bool Add(Director director);
+        Director Update(int id, Director director);
         List<Director> Search(string name, string surname);
-        void Delete(int id);
+        bool Delete(int id);
 
     }
 }

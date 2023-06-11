@@ -16,7 +16,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             _context = context;
         }
 
-        public void Add(Genre genre)
+        public bool Add(Genre genre)
         {
             genre = _context.Genres.SingleOrDefault(x => x.Name == genre.Name);
 
@@ -25,9 +25,11 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Genres.Add(genre);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            return result > 0;
         }
-        public void Update(int id, Genre genre)
+        public Genre Update(int id, Genre genre)
         {
             var p = _context.Genres.FirstOrDefault(x => x.Id == id);
 
@@ -38,22 +40,20 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
 
             _context.SaveChanges();
+            return p;
         }
-        public List<Genre> Search(string name)//look
+        public List<Genre> Search(string name)
         {
-            //List<Movie>? playedMovies, parameter
+
             var query = _context.Genres.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(name))
                 query.Where(x => x.Name.Contains(name));
 
-            //if (playedMovies.)
-            //    query.Where(x => x.PlayedMovies == playedMovies);
-
             return query.ToList();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var genre = _context.Genres.FirstOrDefault(x => x.Id == id);
 
@@ -61,7 +61,9 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Genres.Remove(genre);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            return result > 0;
         }
     }
 }

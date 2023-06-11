@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 namespace MovieStoreApplication.Data.Entity
 {
     [Table("Customers")]
-    public class Customer
+    public class Customer : BaseEntity<int>
     {
-        [Key]
-        public int Id { get; set; }
+
         [MaxLength(100)]
         public string Name { get; set; }
         [MaxLength(100)]

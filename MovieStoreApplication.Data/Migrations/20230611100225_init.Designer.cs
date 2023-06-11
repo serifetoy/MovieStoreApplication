@@ -10,7 +10,7 @@ using MovieStoreApplication.Data.Concrete;
 namespace MovieStoreApplication.Data.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20230608155322_init")]
+    [Migration("20230611100225_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,21 @@ namespace MovieStoreApplication.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ActorMovie", b =>
+                {
+                    b.Property<int>("ActorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlayedMoviesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActorsId", "PlayedMoviesId");
+
+                    b.HasIndex("PlayedMoviesId");
+
+                    b.ToTable("ActorMovie");
+                });
 
             modelBuilder.Entity("MovieStoreApplication.Data.Entity.Actor", b =>
                 {
@@ -131,8 +146,6 @@ namespace MovieStoreApplication.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ActorId");
-
                     b.HasIndex("CustomerId");
 
                     b.HasIndex("DirectorId");
@@ -170,14 +183,23 @@ namespace MovieStoreApplication.Data.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("MovieStoreApplication.Data.Entity.Movie", b =>
+            modelBuilder.Entity("ActorMovie", b =>
                 {
-                    b.HasOne("MovieStoreApplication.Data.Entity.Actor", "Actor")
-                        .WithMany("PlayedMovies")
-                        .HasForeignKey("ActorId")
+                    b.HasOne("MovieStoreApplication.Data.Entity.Actor", null)
+                        .WithMany()
+                        .HasForeignKey("ActorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MovieStoreApplication.Data.Entity.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("PlayedMoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MovieStoreApplication.Data.Entity.Movie", b =>
+                {
                     b.HasOne("MovieStoreApplication.Data.Entity.Customer", null)
                         .WithMany("FavoriteMovies")
                         .HasForeignKey("CustomerId");
@@ -193,8 +215,6 @@ namespace MovieStoreApplication.Data.Migrations
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Actor");
 
                     b.Navigation("Director");
 
@@ -218,11 +238,6 @@ namespace MovieStoreApplication.Data.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Movie");
-                });
-
-            modelBuilder.Entity("MovieStoreApplication.Data.Entity.Actor", b =>
-                {
-                    b.Navigation("PlayedMovies");
                 });
 
             modelBuilder.Entity("MovieStoreApplication.Data.Entity.Customer", b =>

@@ -16,8 +16,12 @@ namespace MovieStoreApplication.Business
         public static IServiceCollection AddBusinessLayer(this IServiceCollection services)
         {
             services.AddScoped<IMovieService, MovieService>();
-
-
+            services.AddScoped<IActorService, ActorService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IDirectorService, DirectorService>();
+            services.AddScoped<IGenreService, GenreService>();
+            services.AddScoped<IOrderService, OrderService>();
+          
             return services;
         }
     }

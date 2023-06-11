@@ -9,9 +9,9 @@ namespace MovieStoreApplication.Data.Abstract
 {
     public interface ICustomerRepository
     {
-        void Add(Customer customer);
-        void Update(int id, Customer customer);
-        void Delete(int id);
+        bool Add(Customer customer);
+        Customer Update(int id, Customer customer);
+        bool Delete(int id);
 
     }
 }

@@ -9,9 +9,9 @@ namespace MovieStoreApplication.Data.Abstract
 {
     public interface IGenreRepository
     {
-        void Add(Genre genre);
-        void Update(int id, Genre genre);
+        bool Add(Genre genre);
+        Genre Update(int id, Genre genre);
         List<Genre> Search(string name);
-        void Delete(int id);
+        bool Delete(int id);
     }
 }

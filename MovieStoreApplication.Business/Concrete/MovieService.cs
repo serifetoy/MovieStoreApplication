@@ -23,27 +23,41 @@ namespace MovieStoreApplication.Business.Concrete
             _repository = repository;
         }
 
-        public void Add(CreateMovieDto movieDto) //emin değilim
+        public ServiceResult Add(CreateMovieDto movieDto)//emin olamadım
         {
-            var movie= _mapper.Map<Movie>(movieDto);
-            _repository.Add(movie);
+            var response = _repository.Add(_mapper.Map<Movie>(movieDto));
+            return response ? ServiceResult.Success() : ServiceResult.Failed("Not Found", 404);
         }
 
-        public void Delete(int id)
+        public ServiceResult Delete(int id)
         {
-            _repository.Delete(id);
+            var response = _repository.Delete(id);
+            return response ? ServiceResult.Success(): ServiceResult.Failed("Not Found", 404);
         }
 
-        public List<GetMovieDto> GetAll(int page, int pageSize)
+        public ServiceResult<List<GetMovieDto>> GetAll(int page, int pageSize)
         {
-            var movies = _repository.GetAll(page, pageSize);  
-            return _mapper.Map<List<GetMovieDto>>(movies);
+            var movies = _repository.GetAll(page, pageSize);
+
+            if (movies is null)
+            {
+                return ServiceResult<List<GetMovieDto>>.Failed(null, "Not Found", 404);
+
+            }
+            return ServiceResult<List<GetMovieDto>>.Success(_mapper.Map<List<GetMovieDto>>(movies));
 
         }
 
-        public GetMovieDto GetById(int id)
+        public ServiceResult<GetMovieDto> GetById(int id)
         {
-            return _mapper.Map<GetMovieDto>(_repository.GetById(id));
+            var response = _mapper.Map<GetMovieDto>(_repository.GetById(id));
+
+            if (response == null) 
+            {
+                return ServiceResult<GetMovieDto>.Failed(null,"Not Found", 404);
+            }
+
+            return ServiceResult<GetMovieDto>.Success(response);
         }
 
         public List<GetMovieDto> Search(string name, int? directorId, int? actorId, int? price)//emin değilim
@@ -55,21 +69,21 @@ namespace MovieStoreApplication.Business.Concrete
 
         public ServiceResult<GetMovieDto> Update(int id, UpdateMovieDto movie) 
         {
-            var pr = _repository.GetById(id);
+            var mov = _repository.GetById(id);
 
-            if (pr is null)
+            if (mov is null)
             {
                 return ServiceResult<GetMovieDto>.Failed(null, "Not Found", 404);
             }
 
-            var p = _repository.Update(id, _mapper.Map<Movie>(movie));
+            var m = _repository.Update(id, _mapper.Map<Movie>(movie));
 
-            if (p is null)
+            if (m is null)
             {
                 return ServiceResult<GetMovieDto>.Failed(null, "Not Found", 404);
             }
 
-            return ServiceResult<GetMovieDto>.Success(_mapper.Map<GetMovieDto>(p));
+            return ServiceResult<GetMovieDto>.Success(_mapper.Map<GetMovieDto>(m));
         }
     }
 }

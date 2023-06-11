@@ -16,13 +16,15 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
         {
             _context = context;
         }
-        public void Add(Customer customer)
+        public bool Add(Customer customer)
         {
             _context.Customers.Add(customer);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            return result > 0;
         }
-        public void Update(int id, Customer customer)
+        public Customer Update(int id, Customer customer)
         {
             var p = _context.Customers.FirstOrDefault(x => x.Id == id);
 
@@ -35,9 +37,10 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             p.Orders = customer.Orders;
 
             _context.SaveChanges();
+            return p;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var p = _context.Customers.FirstOrDefault(x => x.Id == id);
 
@@ -45,7 +48,9 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Customers.Remove(p);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            return result > 0;
         }
     }
 }

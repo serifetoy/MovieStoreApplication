@@ -9,11 +9,8 @@ using System.Threading.Tasks;
 namespace MovieStoreApplication.Data.Entity
 {
     [Table("Orders")]
-    public class Order
+    public class Order : BaseEntity<int>
     {
-        [Key]
-        public int Id { get; set; }
-
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
         public int CustomerId { get; set; }

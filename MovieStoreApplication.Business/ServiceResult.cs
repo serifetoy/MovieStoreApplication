@@ -25,5 +25,23 @@ namespace MovieStoreApplication.Business
             return new ServiceResult<T> { Succeed = false, Result = default(T), ErrorMessage = message, ErrorCode = code };
          }
     }
-    
+    public class ServiceResult
+    {
+        public int ErrorCode { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public bool Succeed { get; set; }
+
+        public static ServiceResult Success()
+        {
+            return new ServiceResult { Succeed = true };
+        }
+
+        public static ServiceResult Failed( string message, int code)
+        {
+            return new ServiceResult { Succeed = false, ErrorMessage = message, ErrorCode = code };
+        }
+    }
+
 }

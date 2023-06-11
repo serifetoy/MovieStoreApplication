@@ -9,9 +9,10 @@ namespace MovieStoreApplication.Data.Abstract
 {
     public interface IActorRepository
     {
-        void Add(Actor actor);
-        void Update(int id, Actor actor);
-        void Delete(int id);
+        bool Add(Actor actor);
+        Actor GetById(int id);
+        Actor Update(int id, Actor actor);
+        bool Delete(int id);
         List<Actor> Search(string name, string surname);
 
 

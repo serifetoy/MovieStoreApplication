@@ -1,21 +1,22 @@
-﻿using System;
+﻿using MovieStoreApplication.Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieStoreApplication.Data.Entity
+namespace MovieStoreApplication.Business.DTOs.DirectorDTOs
 {
-    [Table("Directors")]
-    public class Director : BaseEntity<int>
+    public class DirectorDto
     {
-        
         [MaxLength(100)]
+        [Required]
         public string Name { get; set; }
         [MaxLength(100)]
+        [Required]
         public string Surname { get; set; }
+        [Required]
         public List<Movie> DirectedMovies { get; set; }
     }
 }

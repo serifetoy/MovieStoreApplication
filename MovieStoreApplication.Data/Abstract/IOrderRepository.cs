@@ -9,10 +9,10 @@ namespace MovieStoreApplication.Data.Abstract
 {
     public interface IOrderRepository
     {
-        void Add(Order order);
+        bool Add(Order order);
         Order GetById(int id);
         List<Order> GetAll();
-        void Update(int id, Order order);
-        void Delete(int id);
+        Order Update(int id, Order order);
+        bool Delete(int id);
     }
 }

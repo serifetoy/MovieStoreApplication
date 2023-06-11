@@ -10,11 +10,11 @@ namespace MovieStoreApplication.Business.Abstract
 {
     public interface IMovieService
     {
-        void Add(CreateMovieDto createMovie);
-        GetMovieDto GetById(int id);
-        List<GetMovieDto> GetAll(int page, int pageSize);
+        ServiceResult Add(CreateMovieDto createMovie);
+        ServiceResult<GetMovieDto> GetById(int id);
+        ServiceResult<List<GetMovieDto>> GetAll(int page, int pageSize);
         ServiceResult<GetMovieDto> Update(int id, UpdateMovieDto updateMovie);
         List<GetMovieDto> Search(string name, int? directorId, int? actorId, int? price);
-        void Delete(int id);
+        ServiceResult Delete(int id);
     }
 }

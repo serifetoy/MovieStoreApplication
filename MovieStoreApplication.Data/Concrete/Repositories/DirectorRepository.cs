@@ -16,7 +16,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             _context = context;
         }
 
-        public void Add(Director director)
+        public bool Add(Director director)
         {
             director = _context.Directors.SingleOrDefault(x => x.Name == director.Name && x.Surname == director.Surname);
 
@@ -25,9 +25,11 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Directors.Add(director);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            return result > 0;
         }
-        public void Update(int id, Director director)
+        public Director Update(int id, Director director)
         {
             var p = _context.Directors.FirstOrDefault(x => x.Id == id);
 
@@ -38,10 +40,11 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             p.Surname = director.Surname;
 
             _context.SaveChanges();
+            return p;
         }
-        public List<Director> Search(string name, string surname)//look
+        public List<Director> Search(string name, string surname)
         {
-            //List<Movie>? playedMovies, parameter
+
             var query = _context.Directors.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(name))
@@ -50,14 +53,13 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             if (!string.IsNullOrWhiteSpace(surname))
                 query.Where(x => x.Surname.Contains(surname));
 
-            //if (playedMovies.)
-            //    query.Where(x => x.PlayedMovies == playedMovies);
+
 
 
             return query.ToList();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var p = _context.Directors.FirstOrDefault(x => x.Id == id);
 
@@ -65,7 +67,9 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Directors.Remove(p);
 
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            return result > 0;
         }
 
     }

@@ -16,7 +16,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             _context = context;
         }
 
-        public void Add(Movie movie)
+        public bool Add(Movie movie)
         {
             movie = _context.Movies.SingleOrDefault(x => x.Title == movie.Title);
 
@@ -25,15 +25,16 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             _context.Movies.Add(movie);
 
-            _context.SaveChanges();
+           var result = _context.SaveChanges(); 
+           return result > 0;
         }
 
-        public Movie GetById(int id)//look
+        public Movie GetById(int id)
         {
             return _context.Movies.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Movie> GetAll(int page, int pageSize)//look
+        public List<Movie> GetAll(int page, int pageSize)
         {
             return _context.Movies.Skip(page * pageSize).Take(pageSize).ToList();
         }
@@ -73,16 +74,19 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             return query.ToList();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+ 
             var movie = _context.Movies.FirstOrDefault(x => x.Id == id);
 
             if (movie is null) 
-                throw new InvalidOperationException("Movie not found");
+                return false;
 
             _context.Movies.Remove(movie);
 
-            _context.SaveChanges();
+            var result =_context.SaveChanges();
+
+            return result > 0;
         }
 
 

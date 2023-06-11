@@ -18,7 +18,12 @@ namespace MovieStoreApplication.Data.Concrete
         public DbSet<Director> Directors { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Movie>().HasMany(e => e.Actors).WithMany(e => e.PlayedMovies);
+        }
+
     }
 }
         

@@ -9,11 +9,11 @@ namespace MovieStoreApplication.Data.Abstract
 {
     public interface IMovieRepository
     {
-        void Add(Movie movie);
+        bool Add(Movie movie); 
         Movie GetById(int id);
         List<Movie> GetAll(int page, int pageSize);
         Movie Update(int id, Movie movie);
         List<Movie> Search(string name, int? directorId, int? actorId, int? price);
-        void Delete(int id);
+        bool Delete(int id);
     }
 }
