@@ -10,7 +10,8 @@ using System.Collections.Generic;
 
 namespace MovieStoreApplication.Controllers
 {
-    [Route("movies")]
+    [ApiController]
+    [Route("api/[controller]s")]
     public class MovieController : Controller
     {
         private readonly IMovieService _service;

@@ -7,7 +7,8 @@ using System.Collections.Generic;
 
 namespace MovieStoreApplication.Controllers
 {
-    [Route("orders")]
+    [ApiController]
+    [Route("api/[controller]s")]
     public class OrderController : Controller
     {
         private readonly IOrderService _service;

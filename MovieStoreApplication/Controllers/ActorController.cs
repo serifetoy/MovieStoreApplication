@@ -10,7 +10,7 @@ using Azure;
 namespace MovieStoreApplication.Controllers
 {
     [ApiController]
-    [Route("actors")]
+    [Route("api/[controller]s")]
     public class ActorController : Controller
     {
         private readonly IActorService _service;

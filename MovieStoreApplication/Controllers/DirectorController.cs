@@ -7,7 +7,8 @@ using System.Collections.Generic;
 
 namespace MovieStoreApplication.Controllers
 {
-    [Route("directors")]
+    [ApiController]
+    [Route("api/[controller]s")]
     public class DirectorController : Controller
     {
         private readonly IDirectorService _service;

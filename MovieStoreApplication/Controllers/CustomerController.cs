@@ -7,7 +7,8 @@ using MovieStoreApplication.Business.DTOs.MovieDTOs;
 
 namespace MovieStoreApplication.Controllers
 {
-    [Route("customers")]
+    [ApiController]
+    [Route("api/[controller]s")]
     public class CustomerController : Controller
     {
         private readonly ICustomerService _service;

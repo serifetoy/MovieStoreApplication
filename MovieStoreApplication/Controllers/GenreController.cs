@@ -6,7 +6,8 @@ using MovieStoreApplication.Business.DTOs.GenreDTOs;
 
 namespace MovieStoreApplication.Controllers
 {
-    [Route("genres")]
+    [ApiController]
+    [Route("api/[controller]s")]
     public class GenreController : Controller
     {
         private readonly IGenreService _service;
