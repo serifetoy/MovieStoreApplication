@@ -9,19 +9,19 @@ namespace MovieStoreApplication.Controllers
 {
     [ApiController]
     [Route("api/[controller]s")]
+    
     public class CustomerController : Controller
     {
         private readonly ICustomerService _service;
-        private readonly IMapper _mapper;
-        public CustomerController(IMapper mapper, ICustomerService service)
+       
+        public CustomerController(ICustomerService service)
         {
-            _mapper = mapper;
             _service = service;
         }
 
 
         [HttpPost]
-        public IActionResult Create([FromBody] CustomerDto customerDto)
+        public IActionResult Create([FromBody] CreateCustomerDto customerDto)
         {
             var response = _service.Add(customerDto);
 

@@ -18,9 +18,9 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
         }
         public bool Add(Order order)
         {
-            order = _context.Orders.SingleOrDefault(x => x.Customer.Id == order.CustomerId && x.Movie.Id == order.MovieId);
+            var existorder = _context.Orders.SingleOrDefault(x => x.Customer.Id == order.CustomerId && x.Movie.Id == order.MovieId);
 
-            if (order != null)
+            if (existorder != null)
                 throw new InvalidOperationException("Order already exist");
 
             _context.Orders.Add(order);

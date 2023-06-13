@@ -11,7 +11,7 @@ namespace MovieStoreApplication.Data.Abstract
     {
         bool Add(Genre genre);
         Genre Update(int id, Genre genre);
-        List<Genre> Search(string name);
+        List<Genre> Search(string name, string sort = "asc");
         bool Delete(int id);
     }
 }

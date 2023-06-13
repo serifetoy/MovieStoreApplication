@@ -14,16 +14,16 @@ namespace MovieStoreApplication.Controllers
     public class ActorController : Controller
     {
         private readonly IActorService _service;
-        private readonly IMapper _mapper;
-        public ActorController(IMapper mapper, IActorService service)
+      
+        public ActorController(IActorService service)
         {
-            _mapper = mapper;
+            
             _service = service;
         }
 
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromQuery] int id)//FromQuery
+        public IActionResult GetById( int id)
         {
             var actor = _service.GetById(id);
 
@@ -32,11 +32,11 @@ namespace MovieStoreApplication.Controllers
                 return NotFound(actor.ErrorMessage);
             }
 
-            return Ok(_mapper.Map<ActorDto>(actor));
+            return Ok(actor);
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] ActorDto actorDto)
+        public IActionResult Create([FromBody] CreateActorDto actorDto)
         {
             var response = _service.Add(actorDto);
 

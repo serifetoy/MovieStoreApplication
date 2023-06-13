@@ -10,11 +10,11 @@ namespace MovieStoreApplication.Business.Abstract
 {
     public interface IActorService
     {
-        ServiceResult Add(ActorDto actorDto);
+        ServiceResult Add(CreateActorDto actorDto);
         ServiceResult<ActorDto> GetById(int id);
         ServiceResult<ActorDto> Update(int id, ActorDto actorDto);
         ServiceResult Delete(int id);
-        List<ActorDto> Search(string name, string surname);
+        List<ActorDto> Search(string name, string surname, string sort ="asc");
 
     }
 }

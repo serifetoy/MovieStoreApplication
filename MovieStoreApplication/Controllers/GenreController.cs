@@ -11,10 +11,10 @@ namespace MovieStoreApplication.Controllers
     public class GenreController : Controller
     {
         private readonly IGenreService _service;
-        private readonly IMapper _mapper;
-        public GenreController(IMapper mapper, IGenreService service)
+   
+        public GenreController(IGenreService service)
         {
-            _mapper = mapper;
+           
             _service = service;
         }
 
@@ -27,7 +27,7 @@ namespace MovieStoreApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] GenreDto genreDto)
+        public IActionResult Create([FromBody] CreateGenreDto genreDto)
         {
             var response = _service.Add(genreDto);
 

@@ -12,10 +12,10 @@ namespace MovieStoreApplication.Controllers
     public class DirectorController : Controller
     {
         private readonly IDirectorService _service;
-        private readonly IMapper _mapper;
-        public DirectorController(IMapper mapper, IDirectorService service)
+       
+        public DirectorController(IDirectorService service)
         {
-            _mapper = mapper;
+            
             _service = service;
         }
 
@@ -28,7 +28,7 @@ namespace MovieStoreApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] DirectorDto directorDto)
+        public IActionResult Create([FromBody] CreateDirectorDto directorDto)
         {
             var response = _service.Add(directorDto);
 

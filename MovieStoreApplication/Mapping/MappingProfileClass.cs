@@ -20,14 +20,26 @@ namespace MovieStoreApplication.Mapping
             CreateMap<GetMovieDto,Movie > ().ReverseMap();
             
             CreateMap<ActorDto,Actor > ().ReverseMap();
+            
+            CreateMap<CreateActorDto,Actor > ().ReverseMap();
+            
+            CreateMap<GetActorDto,Actor > ().ReverseMap();
 
             CreateMap<CustomerDto,Customer > ().ReverseMap();
+            
+            CreateMap<CreateCustomerDto,Customer > ().ReverseMap();
 
             CreateMap<DirectorDto, Director > ().ReverseMap();
 
+            CreateMap<CreateDirectorDto, Director > ().ReverseMap();
+
             CreateMap<GenreDto,Genre > ().ReverseMap();
 
+            CreateMap<CreateGenreDto,Genre > ().ReverseMap();
+
             CreateMap<OrderDto,Order > ().ReverseMap();
+
+            //CreateMap<CreateOrderDto,Order > ().ReverseMap();
             
 
         }

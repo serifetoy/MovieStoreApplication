@@ -13,7 +13,7 @@ namespace MovieStoreApplication.Data.Abstract
         Actor GetById(int id);
         Actor Update(int id, Actor actor);
         bool Delete(int id);
-        List<Actor> Search(string name, string surname);
+        List<Actor> Search(string name, string surname, string sort = "asc");
 
 
     }

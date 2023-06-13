@@ -4,6 +4,7 @@ using MovieStoreApplication.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,11 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
         }
         public bool Add(Customer customer)
         {
+            var existcustomer = _context.Customers.SingleOrDefault(x => x.Name == customer.Name && x.Surname == customer.Surname);
+
+            if (existcustomer != null)
+                throw new InvalidOperationException("Customer already exist");
+            
             _context.Customers.Add(customer);
 
             var result = _context.SaveChanges();

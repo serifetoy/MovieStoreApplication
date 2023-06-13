@@ -13,7 +13,7 @@ namespace MovieStoreApplication.Data.Abstract
         Movie GetById(int id);
         List<Movie> GetAll(int page, int pageSize);
         Movie Update(int id, Movie movie);
-        List<Movie> Search(string name, int? directorId, int? actorId, int? price);
+        List<Movie> Search(string name, int? directorId, int? actorId, int? price, string sort = "asc");
         bool Delete(int id);
     }
 }

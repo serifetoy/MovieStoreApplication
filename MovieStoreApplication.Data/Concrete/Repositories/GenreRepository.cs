@@ -18,9 +18,9 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
         public bool Add(Genre genre)
         {
-            genre = _context.Genres.SingleOrDefault(x => x.Name == genre.Name);
+            var existgenre = _context.Genres.FirstOrDefault(x => x.Name == genre.Name);
 
-            if (genre != null)
+            if (existgenre != null)
                 throw new InvalidOperationException("Genre already exist");
 
             _context.Genres.Add(genre);
@@ -42,13 +42,19 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             _context.SaveChanges();
             return p;
         }
-        public List<Genre> Search(string name)
+        public List<Genre> Search(string name, string sort ="asc")
         {
 
             var query = _context.Genres.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(name))
                 query.Where(x => x.Name.Contains(name));
+
+            if (sort == "desc")
+                query.OrderByDescending(x => x.Name);
+
+            if (sort == "asc")
+                query.OrderBy(x => x.Name);
 
             return query.ToList();
         }

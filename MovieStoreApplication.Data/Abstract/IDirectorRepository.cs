@@ -11,7 +11,7 @@ namespace MovieStoreApplication.Data.Abstract
     {
         bool Add(Director director);
         Director Update(int id, Director director);
-        List<Director> Search(string name, string surname);
+        List<Director> Search(string name, string surname, string sort = "asc");
         bool Delete(int id);
 
     }

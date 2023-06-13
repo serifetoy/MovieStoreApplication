@@ -15,8 +15,7 @@ namespace MovieStoreApplication.Business.DTOs.DirectorDTOs
         public string Name { get; set; }
         [MaxLength(100)]
         [Required]
-        public string Surname { get; set; }
-        [Required]
+        public string Surname { get; set; }  
         public List<Movie> DirectedMovies { get; set; }
     }
 }

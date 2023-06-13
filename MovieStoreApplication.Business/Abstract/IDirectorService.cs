@@ -11,9 +11,9 @@ namespace MovieStoreApplication.Business.Abstract
 {
     public interface IDirectorService
     {
-        ServiceResult Add(DirectorDto directorDto);
+        ServiceResult Add(CreateDirectorDto directorDto);
         ServiceResult<DirectorDto> Update(int id, DirectorDto directorDto);
-        List<DirectorDto> Search(string name, string surname);
+        List<DirectorDto> Search(string name, string surname, string sort= "asc");
         ServiceResult Delete(int id);
 
     }

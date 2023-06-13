@@ -12,10 +12,9 @@ namespace MovieStoreApplication.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderService _service;
-        private readonly IMapper _mapper;
-        public OrderController(IMapper mapper, IOrderService service)
+        
+        public OrderController(IOrderService service)
         {
-            _mapper = mapper;
             _service = service;
         }
 
@@ -24,7 +23,9 @@ namespace MovieStoreApplication.Controllers
         {
             var orders = _service.GetAll();
 
-            return Ok(_mapper.Map<List<OrderDto>>(orders));
+            return Ok(orders);
+
+            
         }
 
         [HttpGet("{id}")]
@@ -37,9 +38,8 @@ namespace MovieStoreApplication.Controllers
                 return NotFound(order.ErrorMessage);
             }
 
-            return Ok(_mapper.Map<OrderDto>(order));
+            return Ok(order);  
         }
-
 
         [HttpPost]
         public IActionResult Create([FromBody] OrderDto orderDto)

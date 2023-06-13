@@ -6,17 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieStoreApplication.Business.DTOs.CustomerDTOs
+namespace MovieStoreApplication.Business.DTOs.DirectorDTOs
 {
-    public class CustomerDto
+    public class CreateDirectorDto
     {
-        [MaxLength(100)]
-        [Required]
         public string Name { get; set; }
-        [Required]
-        [MaxLength(100)]
         public string Surname { get; set; }
-        public List<Movie> FavoriteMovies { get; set; } 
-        public List<Order> Orders { get; set; } 
     }
 }

@@ -55,12 +55,12 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             _context.SaveChanges();
             return p;
         }
-        public List<Movie> Search(string name, int? directorId, int? actorId, int? price )
+        public List<Movie> Search(string title, int? directorId, int? actorId, int? price, string sort = "asc" )//title
         {
             var query = _context.Movies.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(name))
-                query.Where(x => x.Title.Contains(name));
+            if (!string.IsNullOrWhiteSpace(title))
+                query.Where(x => x.Title.Contains(title));
 
             if (directorId.HasValue)
                 query.Where(x => x.DirectorId == directorId);
@@ -71,8 +71,15 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             if (price.HasValue)
                 query.Where(x => x.Price > price);
 
+            if (sort == "desc")
+                query.OrderByDescending(x => x.Title);
+
+            if (sort == "asc")
+                query.OrderBy(x => x.Title);
+
             return query.ToList();
         }
+
 
         public bool Delete(int id)
         {

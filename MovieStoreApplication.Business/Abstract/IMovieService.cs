@@ -14,7 +14,7 @@ namespace MovieStoreApplication.Business.Abstract
         ServiceResult<GetMovieDto> GetById(int id);
         ServiceResult<List<GetMovieDto>> GetAll(int page, int pageSize);
         ServiceResult<GetMovieDto> Update(int id, UpdateMovieDto updateMovie);
-        List<GetMovieDto> Search(string name, int? directorId, int? actorId, int? price);
+        List<GetMovieDto> Search(string name, int? directorId, int? actorId, int? price, string sort="asc");
         ServiceResult Delete(int id);
     }
 }

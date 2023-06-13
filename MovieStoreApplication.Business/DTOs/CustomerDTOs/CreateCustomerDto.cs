@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 
 namespace MovieStoreApplication.Business.DTOs.CustomerDTOs
 {
-    public class CustomerDto
-    {
-        [MaxLength(100)]
-        [Required]
+    public class CreateCustomerDto
+    {      
         public string Name { get; set; }
-        [Required]
-        [MaxLength(100)]
         public string Surname { get; set; }
-        public List<Movie> FavoriteMovies { get; set; } 
-        public List<Order> Orders { get; set; } 
     }
 }

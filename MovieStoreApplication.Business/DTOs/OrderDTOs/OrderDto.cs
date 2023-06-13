@@ -17,7 +17,6 @@ namespace MovieStoreApplication.Business.DTOs.OrderDTOs
         public int MovieId { get; set; }
         [Required]
         public double Price { get; set; }
-        [Required]
-        public DateTime PurchaseDate { get; set; }
+        public DateTime PurchaseDate { get; set; } = DateTime.Now;
     }
 }

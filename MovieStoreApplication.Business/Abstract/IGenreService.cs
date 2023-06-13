@@ -10,9 +10,9 @@ namespace MovieStoreApplication.Business.Abstract
 {
     public interface IGenreService
     {
-        ServiceResult Add(GenreDto genreDto);
+        ServiceResult Add(CreateGenreDto genreDto);
         ServiceResult<GenreDto> Update(int id, GenreDto genreDto);
-        List<GenreDto> Search(string name);
+        List<GenreDto> Search(string name, string sort ="asc");
         ServiceResult Delete(int id);
     }
 }

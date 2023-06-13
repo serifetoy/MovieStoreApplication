@@ -11,7 +11,7 @@ namespace MovieStoreApplication.Business.Abstract
 {
     public interface ICustomerService
     {
-        ServiceResult Add(CustomerDto customerDto);
+        ServiceResult Add(CreateCustomerDto customerDto);
         ServiceResult<CustomerDto> Update(int id, CustomerDto customerDto);
         ServiceResult Delete(int id);
     }

@@ -18,9 +18,9 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
         public bool Add(Director director)
         {
-            director = _context.Directors.SingleOrDefault(x => x.Name == director.Name && x.Surname == director.Surname);
+            var currentdirector = _context.Directors.SingleOrDefault(x => x.Name == director.Name && x.Surname == director.Surname);
 
-            if (director!= null)
+            if (currentdirector!= null)
                 throw new InvalidOperationException("Director already exist");
 
             _context.Directors.Add(director);
@@ -42,7 +42,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             _context.SaveChanges();
             return p;
         }
-        public List<Director> Search(string name, string surname)
+        public List<Director> Search(string name, string surname, string sort = "asc")
         {
 
             var query = _context.Directors.AsQueryable();
@@ -52,10 +52,12 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             if (!string.IsNullOrWhiteSpace(surname))
                 query.Where(x => x.Surname.Contains(surname));
+            
+            if (sort == "desc")
+                query.OrderByDescending(x => x.Name);
 
-
-
-
+            if (sort == "asc")
+                query.OrderBy(x => x.Name);
             return query.ToList();
         }
 

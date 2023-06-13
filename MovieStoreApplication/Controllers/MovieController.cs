@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Azure;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieStoreApplication.Business.Abstract;
@@ -15,12 +16,11 @@ namespace MovieStoreApplication.Controllers
     public class MovieController : Controller
     {
         private readonly IMovieService _service;
-        private readonly IMapper _mapper;
+        
         private readonly ILogger<MovieController> _logger;//kullanmadım
 
-        public MovieController(IMapper mapper, IMovieService service, ILogger<MovieController> logger)
-        {
-            _mapper = mapper;
+        public MovieController( IMovieService service, ILogger<MovieController> logger)
+        {  
             _service = service;
             _logger = logger;
         }
@@ -28,9 +28,9 @@ namespace MovieStoreApplication.Controllers
         [HttpGet]
         public IActionResult GetAll(int page = 0, int pageSize = 10)
         {
-            var movies = _service.GetAll(page, pageSize);
-             
-            return Ok(_mapper.Map<List<GetMovieDto>>(movies));
+            return Ok(_service.GetAll(page, pageSize));
+
+            
         }
 
         [HttpGet("{id}")]
@@ -42,8 +42,10 @@ namespace MovieStoreApplication.Controllers
             {
                 return NotFound(movie.ErrorMessage); ;
             }
+            
+            return Ok(movie);
 
-            return Ok(_mapper.Map<GetMovieDto>(movie));
+           
         }
 
         [HttpGet("search")]
@@ -87,6 +89,20 @@ namespace MovieStoreApplication.Controllers
 
             return NotFound(response.ErrorMessage);
         }
+
+
+        //[HttpPatch("{id}")]
+        //public IActionResult PassiveOrActive(int id, [FromBody] JsonPatchDocument<PatchMovieDto> patchDoc)
+        //{
+        //    var response = _service.GetById(id);
+            
+        //    if (!response.Succeed)
+        //        return NoContent();
+
+        //    patchDoc.ApplyTo(response.Result);
+
+        //    _service.Update(id, new PatchMovieDto {  });
+        //}
     }
 
 

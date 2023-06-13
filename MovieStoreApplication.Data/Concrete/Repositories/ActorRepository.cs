@@ -18,9 +18,9 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
         public bool Add(Actor actor)
         {
-            actor = _context.Actors.SingleOrDefault(x => x.Name == actor.Name && x.Surname == actor.Surname);
+            var existactor = _context.Actors.SingleOrDefault(x => x.Name == actor.Name && x.Surname == actor.Surname);
 
-            if (actor != null)
+            if (existactor != null)
                 throw new InvalidOperationException("Actor already exist");
 
             _context.Actors.Add(actor);
@@ -41,7 +41,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             _context.SaveChanges();
             return p;
         }
-        public List<Actor> Search(string name, string surname )
+        public List<Actor> Search(string name, string surname, string sort = "asc" )
         {
             var query = _context.Actors.AsQueryable();
 
@@ -50,6 +50,12 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
 
             if (!string.IsNullOrWhiteSpace(surname))
                 query.Where(x => x.Surname.Contains(surname));
+
+            if (sort == "desc")
+                query.OrderByDescending(x => x.Name);
+
+            if (sort == "asc")
+                query.OrderBy(x => x.Name);
 
 
             return query.ToList();
