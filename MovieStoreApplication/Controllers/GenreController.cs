@@ -32,7 +32,7 @@ namespace MovieStoreApplication.Controllers
             var response = _service.Add(genreDto);
 
             if (response.Succeed)
-                return NoContent();
+                return Created("/create", response);
 
             return NotFound(response.ErrorMessage);
         }

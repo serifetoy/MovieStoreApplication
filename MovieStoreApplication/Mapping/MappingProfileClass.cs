@@ -38,8 +38,6 @@ namespace MovieStoreApplication.Mapping
             CreateMap<CreateGenreDto,Genre > ().ReverseMap();
 
             CreateMap<OrderDto,Order > ().ReverseMap();
-
-            //CreateMap<CreateOrderDto,Order > ().ReverseMap();
             
 
         }

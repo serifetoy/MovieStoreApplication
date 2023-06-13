@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieStoreApplication.Business.Abstract;
 using MovieStoreApplication.Business.DTOs.ActorDTOs;
@@ -9,6 +10,7 @@ namespace MovieStoreApplication.Controllers
 {
     [ApiController]
     [Route("api/[controller]s")]
+    [Authorize]
     
     public class CustomerController : Controller
     {

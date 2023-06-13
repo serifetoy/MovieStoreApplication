@@ -13,6 +13,6 @@ namespace MovieStoreApplication.Data.Entity
     {
         [MaxLength(100)]
         public string Name { get; set; }
-        public List<Genre> Genres { get; set; }
+        public List<Movie> Genres { get; set; }
     }
 }
