@@ -1,6 +1,21 @@
 # MovieStoreApplication
 
- Linq komutları ile CRUD işlemleri
+
+## Proje Hakkında
+
+Bu projede, .NET Core kullanarak MovieStore Web API'sini geliştirdim. XUnit testleriyle kapsamlı bir şekilde test edildi. Aşağıda projenin özellikleri ve kullanılan araçlar detaylı olarak açıklanmaktadır.
+
+## Özellikler ve Araçlar
+
+- Entity Framework kullanarak veritabanı işlemleri gerçekleştirildi.
+- LINQ ile CRUD işlemleri yapıldı.
+- İlişkisel veritabanı yapısı kullanıldı.
+- Entity, DTO ve Mapper kullanımı sağlandı.
+- Özel hata işleme (Exception Middleware) eklendi.
+- Projeye Logger servisi eklendi.
+
+
+ ## Linq komutları ile CRUD işlemleri
  
 • Movie Controller'de : Tüm filmleri listeleme, ID'ye göre listeleme, ekleme, silme ve güncelleme işlemleri
 
