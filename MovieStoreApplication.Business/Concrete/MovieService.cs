@@ -45,7 +45,7 @@ namespace MovieStoreApplication.Business.Concrete
             return response ? ServiceResult.Success(): ServiceResult.Failed("Not Found", 404);
         }
 
-        public ServiceResult<List<GetMovieDto>> GetAll(int page, int pageSize)//logger oldu mu 
+        public ServiceResult<List<GetMovieDto>> GetAll(int page, int pageSize)
         {
             var movies = _repository.GetAll(page, pageSize);
 
@@ -84,7 +84,7 @@ namespace MovieStoreApplication.Business.Concrete
 
         }
 
-        public ServiceResult<GetMovieDto> Update(int id, UpdateMovieDto movie) // logger kullanmadım
+        public ServiceResult<GetMovieDto> Update(int id, UpdateMovieDto movie) 
         {
             var mov = _repository.GetById(id);
 

@@ -25,7 +25,7 @@ namespace MovieStoreApplication.Data.Entity
         public List<Actor> Actors { get; set; }
         public int ActorId { get; set; }
         public double Price { get; set; }
-        public bool IsActive { get; set; }//kullanmadım
+        public bool IsActive { get; set; }
 
     }
 

@@ -60,7 +60,7 @@ namespace MovieStoreApplication.Business.Concrete
             return ServiceResult<ActorDto>.Success(response);
         }
 
-        public List<ActorDto> Search(string name, string? surname, string sort = "asc")//nullable olmalı mı 
+        public List<ActorDto> Search(string name, string? surname, string sort = "asc")
         {
             var actors = _repository.Search(name, surname, sort);
 

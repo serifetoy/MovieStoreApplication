@@ -90,19 +90,6 @@ namespace MovieStoreApplication.Controllers
             return NotFound(response.ErrorMessage);
         }
 
-
-        //[HttpPatch("{id}")]
-        //public IActionResult PassiveOrActive(int id, [FromBody] JsonPatchDocument<PatchMovieDto> patchDoc)
-        //{
-        //    var response = _service.GetById(id);
-            
-        //    if (!response.Succeed)
-        //        return NoContent();
-
-        //    patchDoc.ApplyTo(response.Result);
-
-        //    _service.Update(id, new PatchMovieDto {  });
-        //}
     }
 
 

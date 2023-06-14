@@ -40,7 +40,7 @@ namespace MovieStoreApplication.Data.Concrete.Repositories
             return _context.Orders.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Order> GetAll()//not sure ??
+        public List<Order> GetAll()
         {
             var orderList = _context.Orders.Include(x => x.Movie).Include(x => x.Customer).OrderBy(x => x.Id).ToList<Order>();
             return orderList;

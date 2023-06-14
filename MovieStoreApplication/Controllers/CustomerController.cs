@@ -10,8 +10,7 @@ namespace MovieStoreApplication.Controllers
 {
     [ApiController]
     [Route("api/[controller]s")]
-    [Authorize]
-    
+    [Authorize]  
     public class CustomerController : Controller
     {
         private readonly ICustomerService _service;

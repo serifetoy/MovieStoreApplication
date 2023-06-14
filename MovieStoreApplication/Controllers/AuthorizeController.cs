@@ -23,29 +23,7 @@ namespace MovieStoreApplication.Controllers
 
         [HttpPost("token")]
         public IActionResult GetToken(UserSec usersec)
-        {
-
-            //var id = "UserID";
-
-            //var tokenHandler = new JwtSecurityTokenHandler();
-            //var key = Encoding.UTF8.GetBytes(_configuration.GetValue<string>("JwtKey"));
-
-            //var tokenDesc = new SecurityTokenDescriptor
-            //{
-            //    SigningCredentials= new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256),
-            //    Expires = DateTime.UtcNow.AddDays(1), //lifetime
-            //    Subject = new System.Security.Claims.ClaimsIdentity(new Claim[]
-            //    {
-            //        new Claim(ClaimTypes.Name, id )
-            //    })
-            //};
-
-            //var token = tokenHandler.CreateToken(tokenDesc);
-
-            //var tokenString = tokenHandler.WriteToken(token);
-
-            //return Ok(tokenString);
-
+        { 
             var id = "UserID";
             var tokenHandler = new JwtSecurityTokenHandler();
             var result = _configuration.GetSection("JwtKey").Value;
