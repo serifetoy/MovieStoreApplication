@@ -31,4 +31,4 @@ Bu projede, .NET Core kullanarak MovieStore Web API'sini geliştirdim. XUnit tes
 
 
 
-![image](https://github.com/serifetoy/MovieStoreApplication/assets/92857592/e8a04484-4155-4eed-a7b0-3843a0f537c2)
+![image](https://github.com/serifetoy/MovieStoreApplication/assets/92857592/5144a18f-0c84-44f2-87ed-e72ad5ad2b80)
